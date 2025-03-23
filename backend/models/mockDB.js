@@ -1,11 +1,5 @@
-let projects = [
-    { id: 1, name: 'VanillaJS Project' },       
-  { id: 2, name: 'React Project' },
-  { id: 3, name: 'Node Project' },
-  { id: 4, name: 'Angular Project' },
-  { id: 5, name: 'Python Project' },
-];
-let nId = 6;
+let projects = [];
+let nId = 0;
 
 console.log("mockdb activated")
 module.exports = {
@@ -24,6 +18,11 @@ module.exports = {
       return projects.splice(index, 1)[0]; 
     }
     return null;
+  },
+  deleteAllProjects: ()=>{
+    projects = []; 
+    nId = 0;
+
   },
   getProjectCount: () => projects.length,
 };

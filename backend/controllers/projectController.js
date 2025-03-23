@@ -29,10 +29,15 @@ const deleteProject = (req, res) => {
 const getProjectCount = (req, res) => {
   res.json({ count: mockDB.getProjectCount() });
 };
+const deleteAllProjects = (req, res)=>{
+  mockDB.deleteAllProjects();
+  res.status(204).send();
+}
 
 module.exports = {
     getProjects,
     getProjectCount,
     deleteProject,
-    addProject
+    addProject,
+    deleteAllProjects
 }

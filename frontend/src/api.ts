@@ -6,6 +6,9 @@ export const getProjects = async()=>{
     return response.data;
 
 }
+export const deleteAllProjects = async()=>{
+  await axios.delete(API_URL);
+}
 
 export const addProject = async (name: string) => {
     const response = await axios.post(API_URL, { name });

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getProjects, deleteProject } from "../api";
+import { getProjects, deleteProject, deleteAllProjects } from "../api";
 
 interface Project { 
     id: number;
@@ -28,19 +28,34 @@ const ProjectList = ({ refresh, onProjectDeleted }: { refresh: boolean; onProjec
         onProjectDeleted(); // Update project count
     };
 
-    return(
-        <div className="container2">
+    const handleDeleteAll = async () => {
+      await deleteAllProjects();
+      fetchProjects();
+      onProjectDeleted(); // Update project count
+  };
+
+  return (
+    <div className="container2">
+      <h2>Projects List</h2>
+      {projects.length > 0 ? (
+        <>
           <ul>
-          <h2 >Projects List</h2>
             {projects.map((project) => (
               <li key={project.id}>
                 {project.name}{" "}
-                <button onClick={() => handleDelete(project.id)}>Delete</button>
+                <button onClick={() => handleDelete(project.id)} className="delete-btn">Delete</button>
               </li>
             ))}
           </ul>
-        </div>
-    );
+          <button onClick={handleDeleteAll} className="delete-all-btn">
+            Delete All Projects
+          </button>
+        </>
+      ) : (
+        <p>No projects available.</p>
+      )}
+    </div>
+);
 };
 
 export default ProjectList;
