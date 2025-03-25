@@ -36,10 +36,11 @@ const ProjectList = ({ refresh, onProjectDeleted }: { refresh: boolean; onProjec
 
   return (
     <div className="container2">
-      <h2>Projects List</h2>
+      
       {projects.length > 0 ? (
         <>
           <ul>
+          <h2>Projects List</h2>
             {projects.map((project) => (
               <li key={project.id}>
                 {project.name}{" "}
